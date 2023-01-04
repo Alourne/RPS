@@ -20,13 +20,15 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-    let tie = "It's a tie! You selected" + playerSelection + " and the computer also chose " + computerSelection;
-    let paperBeatsRock = "You win! " +playerSelection+ " beats "+computerSelection;
-    let rockBeatsScissors = "You win! " +playerSelection+ " beats "+computerSelection;
-    let scissorsBeatsPaper = "You win! " +playerSelection+ " beats "+computerSelection;
-    let paperBeatsRockLoss = "You lost!! " +computerSelection+ " beats "+playerSelection;
-    let rockBeatsScissorsLoss = "You lost! " +computerSelection+ " beats "+playerSelection;
-    let scissorsBeatsPaperLoss = "You lost! " +computerSelection+ " beats "+playerSelection;
+    let tie = "It's a tie! You selected " + playerSelection + " and the computer also chose " + computerSelection;
+    let paperBeatsRock = "You win! " +(playerSelection[0].toUpperCase() + playerSelection.slice(1)) + " beats "+(computerSelection[0].toUpperCase() + computerSelection.slice(1));
+    let rockBeatsScissors = "You win! " +(playerSelection[0].toUpperCase() + playerSelection.slice(1))+ " beats "+(computerSelection[0].toUpperCase() + computerSelection.slice(1));
+    let scissorsBeatsPaper = "You win! " +(playerSelection[0].toUpperCase() + playerSelection.slice(1))+ " beats "+(computerSelection[0].toUpperCase() + computerSelection.slice(1));
+    let paperBeatsRockLoss = "You lost! " +(computerSelection[0].toUpperCase() + computerSelection.slice(1))+ " beats "+(playerSelection[0].toUpperCase() + playerSelection.slice(1));
+    let rockBeatsScissorsLoss = "You lost! " +(computerSelection[0].toUpperCase() + computerSelection.slice(1))+ " beats "+(playerSelection[0].toUpperCase() + playerSelection.slice(1));
+    let scissorsBeatsPaperLoss = "You lost! " +(computerSelection[0].toUpperCase() + computerSelection.slice(1))+ " beats "+(playerSelection[0].toUpperCase() + playerSelection.slice(1));
+
+
 
     if (playerSelection === computerSelection) {
         return tie;
@@ -57,6 +59,27 @@ function playRound(playerSelection, computerSelection) {
         }
 }
 
-const playerSelection = "paper";
-const computerSelection = "rock";
-console.log(playRound(playerSelection, computerSelection));
+// function capitalize(playerSelection) {
+//     let allLowerCase = playerSelection.toLowerCase();
+//     let firstLetterCap = allLowerCase.charAt(0).toUpperCase() + allLowerCase.slice(1);
+//     return firstLetterCap;
+// }
+
+// const playerSelection = "rock";
+// const computerSelection = getComputerChoice();
+// console.log(playRound(capitalize(playerSelection), computerSelection));
+
+
+
+function game(playRound) {
+
+    for (let i = 0; i < 5; i++) {
+        let answer = prompt("Input your weapon ");
+        console.log("You have chosen "+answer+" and the computer chose "+computerSelection);
+    }
+
+}
+
+
+const playerSelection = game();
+// const computerSelection = getComputerChoice();
