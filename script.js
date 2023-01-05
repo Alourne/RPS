@@ -1,3 +1,5 @@
+
+//computer chooses one of the following
 function getComputerChoice() {
     let rock = "rock";
     let paper = "paper";
@@ -19,15 +21,24 @@ function getComputerChoice() {
     }
 }
 
+function game() {
+
+// loop that plays 5 rounds
+    for (let i = 0; i < 5; i++) {
+        playerSelection = prompt("Input your weapon");
+        const computerSelection = getComputerChoice();
+        console.log(playRound(playerSelection, computerSelection));
+
+
+        // round gets played
 function playRound(playerSelection, computerSelection) {
     let tie = "It's a tie! You selected " + playerSelection + " and the computer also chose " + computerSelection;
-    let paperBeatsRock = "You win! " +(playerSelection[0].toUpperCase() + playerSelection.slice(1)) + " beats "+(computerSelection[0].toUpperCase() + computerSelection.slice(1));
+    let paperBeatsRock = "You win! " +playerSelection+ " beats "+computerSelection[0].toUpperCase() + computerSelection.slice(1);
     let rockBeatsScissors = "You win! " +(playerSelection[0].toUpperCase() + playerSelection.slice(1))+ " beats "+(computerSelection[0].toUpperCase() + computerSelection.slice(1));
     let scissorsBeatsPaper = "You win! " +(playerSelection[0].toUpperCase() + playerSelection.slice(1))+ " beats "+(computerSelection[0].toUpperCase() + computerSelection.slice(1));
     let paperBeatsRockLoss = "You lost! " +(computerSelection[0].toUpperCase() + computerSelection.slice(1))+ " beats "+(playerSelection[0].toUpperCase() + playerSelection.slice(1));
     let rockBeatsScissorsLoss = "You lost! " +(computerSelection[0].toUpperCase() + computerSelection.slice(1))+ " beats "+(playerSelection[0].toUpperCase() + playerSelection.slice(1));
     let scissorsBeatsPaperLoss = "You lost! " +(computerSelection[0].toUpperCase() + computerSelection.slice(1))+ " beats "+(playerSelection[0].toUpperCase() + playerSelection.slice(1));
-
 
 
     if (playerSelection === computerSelection) {
@@ -57,8 +68,12 @@ function playRound(playerSelection, computerSelection) {
         ((playerSelection === "paper") && (computerSelection === "scissors")) {
             return scissorsBeatsPaperLoss;
         }
+    }
+    // console.log(playRound);
+}
 }
 
+game();
 // function capitalize(playerSelection) {
 //     let allLowerCase = playerSelection.toLowerCase();
 //     let firstLetterCap = allLowerCase.charAt(0).toUpperCase() + allLowerCase.slice(1);
@@ -71,15 +86,5 @@ function playRound(playerSelection, computerSelection) {
 
 
 
-function game(playRound) {
-
-    for (let i = 0; i < 5; i++) {
-        let answer = prompt("Input your weapon ");
-        console.log("You have chosen "+answer+" and the computer chose "+computerSelection);
-    }
-
-}
-
-
-const playerSelection = game();
+// const playerSelection = game();
 // const computerSelection = getComputerChoice();
