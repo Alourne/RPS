@@ -32,8 +32,8 @@ function game() {
 
         // round gets played
 function playRound(playerSelection, computerSelection) {
-    let tie = "It's a tie! You selected " + playerSelection + " and the computer also chose " + computerSelection;
-    let paperBeatsRock = "You win! " +playerSelection+ " beats "+computerSelection[0].toUpperCase() + computerSelection.slice(1);
+    let tie = "It's a tie! You selected " + (playerSelection[0].toUpperCase() + playerSelection.slice(1))+ " and the computer also chose " + computerSelection[0].toUpperCase() + computerSelection.slice(1);
+    let paperBeatsRock = "You win! " +(playerSelection[0].toUpperCase() + playerSelection.slice(1))+ " beats "+computerSelection[0].toUpperCase() + computerSelection.slice(1);
     let rockBeatsScissors = "You win! " +(playerSelection[0].toUpperCase() + playerSelection.slice(1))+ " beats "+(computerSelection[0].toUpperCase() + computerSelection.slice(1));
     let scissorsBeatsPaper = "You win! " +(playerSelection[0].toUpperCase() + playerSelection.slice(1))+ " beats "+(computerSelection[0].toUpperCase() + computerSelection.slice(1));
     let paperBeatsRockLoss = "You lost! " +(computerSelection[0].toUpperCase() + computerSelection.slice(1))+ " beats "+(playerSelection[0].toUpperCase() + playerSelection.slice(1));
@@ -74,17 +74,3 @@ function playRound(playerSelection, computerSelection) {
 }
 
 game();
-// function capitalize(playerSelection) {
-//     let allLowerCase = playerSelection.toLowerCase();
-//     let firstLetterCap = allLowerCase.charAt(0).toUpperCase() + allLowerCase.slice(1);
-//     return firstLetterCap;
-// }
-
-// const playerSelection = "rock";
-// const computerSelection = getComputerChoice();
-// console.log(playRound(capitalize(playerSelection), computerSelection));
-
-
-
-// const playerSelection = game();
-// const computerSelection = getComputerChoice();
