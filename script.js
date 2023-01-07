@@ -81,8 +81,8 @@ function playRound (playerSelection, computerSelection) {
     winner = "It's a tie!";
     }
 
-    console.log("Game winner is: "+winner)
-
+    console.log(winner)
+// code doesnt work with a ; after or anything above it?
 }
 
 game();
