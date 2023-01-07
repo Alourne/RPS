@@ -12,9 +12,9 @@ return winner.weapon;
 }
 
 function game() {
-    const wins = 0;
-    const losses = 0;
-    const gameWinner = "";
+    let wins = 0;
+    let losses = 0;
+    let gameWinner = "";
 
     for (let i=0; i < 5; i++) {
         playerSelection = prompt("pick your weapon");
@@ -39,7 +39,7 @@ function playRound (playerSelection, computerSelection) {
  }
 
  else if ((playerSelection === "rock") && (computerSelection === "scissors")) {
-    return wins++;
+    wins++;
     return rockBeatsScissors;
  }
  
