@@ -88,7 +88,7 @@ function playRound (playerSelection, computerSelection) {
 
  //  create computer win tracking DOM
  const computerWinText = document.createElement("p");
- computerWinText.style.color = "blue";
+ computerWinText.style.color = "green";
  computerWinText.textContent = "Computer Win Total: " + computerWin;
  resultsDiv.appendChild(computerWinText);
 
