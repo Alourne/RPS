@@ -1,8 +1,9 @@
+
 function getComputerChoice(){ 
 const choices = [ // array with all the choices and a percentage of it selecting the choice
-    {weapon: "rock", pct: 33},
-    {weapon: "scissors", pct: 33},
-    {weapon: "paper", pct: 33}
+    {weapon: "Rock", pct: 33},
+    {weapon: "Scissors", pct: 33},
+    {weapon: "Paper", pct: 33}
 ];
 
 const expanded = choices.flatMap(choices => Array(choices.pct).fill(choices));
@@ -12,77 +13,136 @@ return winner.weapon;
 }
 
 function game() {
-    let wins = 0;
-    let losses = 0;
-    let winner = "";
+   let playerWin = 0;
+   let computerWin = 0;
+   let gameWinner = " ";
 
-    // starts a 5 round game
-    for (let i=0; i < 5; i++) {
-        playerSelection = prompt("Pick your weapon");
+   const buttons = document.querySelectorAll('button');
+   buttons.forEach((button) => {
+     button.addEventListener('click', () => {
+        playerSelection = button.className;
         const computerSelection = getComputerChoice();
-        console.log(playRound(playerSelection, computerSelection));
-        console.log("Wins: "+wins);
-        console.log("Losses: "+losses);
-    }
+        battleWinText.textContent = (playRound(playerSelection, computerSelection));
+        playerWinText.textContent = "Player Win Total: " +playerWin;
+        computerWinText.textContent = "Computer Win Total: " +computerWin;
+        endGame();
+     })
+  })
 
-    // plays the round
 function playRound (playerSelection, computerSelection) {
- let tie = "It's a tie! You have selected "+(playerSelection[0].toUpperCase() + playerSelection.slice(1))+" and the computer chose "+(computerSelection[0].toUpperCase() + computerSelection.slice(1));
- let rockBeatsScissors = "Win! You selected "+(playerSelection[0].toUpperCase() + playerSelection.slice(1))+" and the computer chose "+(computerSelection[0].toUpperCase() + computerSelection.slice(1));
- let scissorsBeatsPaper = "Win! You selected "+(playerSelection[0].toUpperCase() + playerSelection.slice(1))+" and the computer chose "+(computerSelection[0].toUpperCase() + computerSelection.slice(1));
- let paperBeatsRock = "Win! You selected "+(playerSelection[0].toUpperCase() + playerSelection.slice(1))+" and the computer chose "+(computerSelection[0].toUpperCase() + computerSelection.slice(1));
- let rockBeatsScissorsLoss = "Loss! You selected "+(playerSelection[0].toUpperCase() + playerSelection.slice(1))+" and the computer chose "+(computerSelection[0].toUpperCase() + computerSelection.slice(1));
- let scissorsBeatsPaperLoss = "Loss! You selected "+(playerSelection[0].toUpperCase() + playerSelection.slice(1))+" and the computer chose "+(computerSelection[0].toUpperCase() + computerSelection.slice(1));
- let paperBeatsRockLoss = "Loss! You selected "+(playerSelection[0].toUpperCase() + playerSelection.slice(1))+" and the computer chose "+(computerSelection[0].toUpperCase() + computerSelection.slice(1));
+ let tie = "It's a tie! You have selected "+(playerSelection)+" and the computer chose "+(computerSelection);
+ let rockBeatsScissors = "Win! You selected "+(playerSelection)+" and the computer chose "+(computerSelection);
+ let scissorsBeatsPaper = "Win! You selected "+(playerSelection)+" and the computer chose "+(computerSelection);
+ let paperBeatsRock = "Win! You selected "+(playerSelection)+" and the computer chose "+(computerSelection);
+ let rockBeatsScissorsLoss = "Loss! You selected "+(playerSelection)+" and the computer chose "+(computerSelection);
+ let scissorsBeatsPaperLoss = "Loss! You selected "+(playerSelection)+" and the computer chose "+(computerSelection);
+ let paperBeatsRockLoss = "Loss! You selected "+(playerSelection)+" and the computer chose "+(computerSelection);
 
  //returns back the result + updates the win/loss count
  if (playerSelection === computerSelection) {
     return tie;
  }
 
- else if ((playerSelection === "rock") && (computerSelection === "scissors")) {
-    wins++;
+ else if ((playerSelection === "Rock") && (computerSelection === "Scissors")) {
+    playerWin++;
     return rockBeatsScissors;
  }
  
- else if ((playerSelection === "scissors") && (computerSelection === "paper")) {
-    wins++;
+ else if ((playerSelection === "Scissors") && (computerSelection === "Paper")) {
+   playerWin++;
     return scissorsBeatsPaper;
  }
 
- else if ((playerSelection === "paper") && (computerSelection === "rock")) {
-    wins++;
+ else if ((playerSelection === "Paper") && (computerSelection === "Rock")) {
+   playerWin++;
     return paperBeatsRock;
  }
 
- else if ((playerSelection === "scissors") && (computerSelection === "rock")) {
-    losses++;
+ else if ((playerSelection === "Scissors") && (computerSelection === "Rock")) {
+    computerWin++;
     return rockBeatsScissorsLoss;
  }
  
- else if ((playerSelection === "paper") && (computerSelection === "scissors")) {
-    losses++
+ else if ((playerSelection === "Paper") && (computerSelection === "Scissors")) {
+   computerWin++
     return scissorsBeatsPaperLoss;
  }
 
- else if ((playerSelection === "rock") && (computerSelection === "paper")) {
-    losses++;
+ else if ((playerSelection === "Rock") && (computerSelection === "Paper")) {
+   computerWin++;
     return paperBeatsRockLoss;
  }
+}
 
- // returns back the winner
-    if (wins > losses) {
-        winner = "You won!";
-    }
-    else if (wins < losses) {
-        winner = "You lost!";
-    }
-    else (wins === losses)
-    winner = "It's a tie!";
-    }
+ //  create div DOM for all results
+ const container = document.querySelector("#container");
+ const resultsDiv = document.createElement("div");
+ resultsDiv.style.marginTop = "20px";
+ container.appendChild(resultsDiv);
 
-    console.log(winner)
-// code doesnt work with a ; after or anything above it?
+ //  create player win tracking DOM 
+ const playerWinText = document.createElement("p");
+ playerWinText.style.color = "blue";
+ playerWinText.textContent = "Player Win Total: " + playerWin;
+ resultsDiv.appendChild(playerWinText);
+
+ //  create computer win tracking DOM
+ const computerWinText = document.createElement("p");
+ computerWinText.style.color = "blue";
+ computerWinText.textContent = "Computer Win Total: " + computerWin;
+ resultsDiv.appendChild(computerWinText);
+
+ //  create battle win text DOM
+ const battleWinText = document.createElement("p");
+ battleWinText.style.color = "black";
+ resultsDiv.appendChild(battleWinText);
+ 
+ //  create game win text DOM
+ const gameWinText = document.createElement("p");
+ gameWinText.style.color = "red";
+ gameWinText.textContent = gameWinner;
+ resultsDiv.appendChild(gameWinText);
+
+ //  determine who won to five points first
+ function endGame() {
+     if (playerWin == 5) {
+         gameWinner = "YOU WIN!";
+         gameWinText.textContent = gameWinner;
+         
+         //  disable game buttons
+         document.getElementById("1").disabled = true;
+         document.getElementById("2").disabled = true;
+         document.getElementById("3").disabled = true;
+         
+         //  create new DOM button to replay
+         const playAgainButton = document.createElement("button");
+         playAgainButton.textContent = "Play Again!";
+         resultsDiv.appendChild(playAgainButton);
+         
+         //  if clicked, reload page
+         playAgainButton.addEventListener('click', () => {
+             location.reload();
+             })
+     } else if (computerWin == 5) {
+         gameWinner = "COMPUTER WINS!";
+         gameWinText.textContent = gameWinner;
+         
+         //  disable game buttons
+         document.getElementById("1").disabled = true;
+         document.getElementById("2").disabled = true;
+         document.getElementById("3").disabled = true;
+         
+         //  create new DOM button to replay
+         const playAgainButton = document.createElement("button");
+         playAgainButton.textContent = "Play Again!";
+         resultsDiv.appendChild(playAgainButton);
+         
+         //  if clicked, reload page
+         playAgainButton.addEventListener('click', () => {
+             location.reload();
+             })
+   }
+ }
 }
 
 game();
